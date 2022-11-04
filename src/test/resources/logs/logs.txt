@@ -1,0 +1,21 @@
+2022-11-05 02:06:13 INFO  Utils:112 - [TestNG] Running:
+  C:\Users\Yasemin\AppData\Local\JetBrains\IdeaIC2021.3\temp-testng-customsuite.xml
+
+2022-11-05 02:06:16 INFO  WebDriverManager:1093 - Using chromedriver 107.0.5304.62 (resolved driver for Chrome 107)
+2022-11-05 02:06:16 INFO  WebDriverManager:1148 - Exporting webdriver.chrome.driver as C:\Users\Yasemin\.cache\selenium\chromedriver\win32\107.0.5304.62\chromedriver.exe
+2022-11-05 02:06:33 INFO  HepsiBuradaTest:22 - Kullanıcıhttp://www.hepsiburada.com/sitesini ziyaret eder
+2022-11-05 02:07:16 INFO  HepsiBuradaTest:26 - Kullanıcı sorunsuz bir şekilde giriş işlemi yapar ve giriş işleminin yapıldığı doğrulanır
+2022-11-05 02:07:20 INFO  HepsiBuradaTest:30 - Kullanıcı satın almak istediği ürün için arama yapar
+2022-11-05 02:07:28 INFO  HepsiBuradaTest:34 - Kullanıcı,arama sonucunda ekrana gelen ürün listesinden ürün seçer
+2022-11-05 02:07:40 INFO  HepsiBuradaTest:38 - Kullanıcı seçtiği ürün için 2 tane farklı satıcıdan ürünü sepete ekler
+2022-11-05 02:07:46 INFO  HepsiBuradaTest:42 - Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanır
+2022-11-05 02:07:47 INFO  WebDriverManager:1093 - Using chromedriver 107.0.5304.62 (resolved driver for Chrome 107)
+2022-11-05 02:07:47 INFO  WebDriverManager:1148 - Exporting webdriver.chrome.driver as C:\Users\Yasemin\.cache\selenium\chromedriver\win32\107.0.5304.62\chromedriver.exe
+2022-11-05 02:07:48 INFO  Log:14 - -----------------------------------------------------------
+2022-11-05 02:07:48 INFO  Log:15 - ***************     Kullanıcının üye girişi yapmadan sepetine eklediği ürünleri doğrulama testi START  **************
+2022-11-05 02:07:48 INFO  Log:16 - -----------------------------------------------------------
+2022-11-05 02:07:58 INFO  Log:29 - !!!Kullanıcıhttp://www.hepsiburada.com/sitesini ziyaret eder!!!
+2022-11-05 02:08:02 INFO  Log:29 - !!!Kullanıcı satın almak istediği ürün için arama yapar!!!
+2022-11-05 02:08:11 INFO  Log:29 - !!!Kullanıcı,arama sonucunda ekrana gelen ürün listesinden ürün seçer!!!
+2022-11-05 02:08:22 INFO  Log:29 - !!!Kullanıcı seçtiği ürün için 2 tane farklı satıcıdan ürünü sepete ekler!!!
+2022-11-05 02:08:36 INFO  Log:29 - !!!Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanır!!!

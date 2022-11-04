@@ -1,69 +1,79 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 import page.HepsiBuradaPage;
-import utilities.ConfigReader;
-import utilities.Driver;
-import utilities.ReusableMethods;
-import utilities.TestBase;
+import utilities.*;
 
 
-public class HepsiBuradaTest {
+
+
+public class HepsiBuradaTest extends TestBaseRapor {
+
+    HepsiBuradaPage hepsiBuradaPage;
+    Logger log =(Logger) LogManager.getLogger(HepsiBuradaTest.class);
 
     @Test
-    public void hepsiBuradaTest(){
-        HepsiBuradaPage hepsiBuradaPage=new HepsiBuradaPage();
-        //Kullanıcı Hepsiburada.com sitesini ziyaret eder.
-          Driver.getDriver().get(ConfigReader.getProperty("hepsiBuradaUrl"));
+        public void üyeGirişiYaparakAlışveriş(){
+        hepsiBuradaPage=new HepsiBuradaPage();
 
-        //Kullanıcı giriş işlemi yapılır.
-        ReusableMethods.waitFor(3);
-        Actions actions=new Actions(Driver.getDriver());
-        actions.moveToElement(hepsiBuradaPage.girişYapVeyaÜyeOlButonu).click(hepsiBuradaPage.girişYap).perform();
+        hepsiBuradaPage.istenilenWebSiteyeGitme();
+        log.info("Kullanıcı"+ConfigReader.getProperty("url")+ "sitesini ziyaret eder");
 
 
-      //  hepsiBuradaPage.girişYapVeyaÜyeOlButonu.click();
-      //  ReusableMethods.waitFor(3);
-     //   hepsiBuradaPage.girişYap.click();
-        ReusableMethods.waitFor(3);
-        hepsiBuradaPage.ePostaDoğrulama.sendKeys(ConfigReader.getProperty("ePosta"));
-        hepsiBuradaPage.üyeGirişYapButonu.click();
-        ReusableMethods.waitFor(3);
-        hepsiBuradaPage.şifre.sendKeys(ConfigReader.getProperty("sifre"));
-        hepsiBuradaPage.şifreGirişYapButonu.click();
-        ReusableMethods.waitFor(3);
-
-        //Yönlendirmeden sonra anasayfada kullanıcı giriş işleminin yapıldığı doğrulanır.
-        hepsiBuradaPage.hesabımButonu.isDisplayed();
-
-        //Kullanıcı, burada satın almak istediği ürün için arama yapacaktır.
-        hepsiBuradaPage.aramaButonu.sendKeys("defter");
-        hepsiBuradaPage.araButonu.click();
-        ReusableMethods.waitFor(3);
-
-        //Kullanıcı, Arama sonucunda ekrana gelen ürün listesinden (veya tek bir sonuç da dönmüş olabilir) ürün seçer.
-        hepsiBuradaPage.defterİlkResim.click();
-        ReusableMethods.waitFor(3);
-
-        //Seçilen ürün için 2 tane farklı satıcıdan ürün seçilip sepete eklenir.
-        hepsiBuradaPage.ilkSatıcıSepeteEkle.click();
-        hepsiBuradaPage.çarpıButonu.click();
-        ReusableMethods.waitFor(3);
-        hepsiBuradaPage.ikinciSatıcıSepeteEkle.click();
-        hepsiBuradaPage.çarpıButonu.click();
-        ReusableMethods.waitFor(3);
-
-        //Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanmalıdır.
-        hepsiBuradaPage.sepetimButonu.click();
-        Assert.assertTrue(hepsiBuradaPage.ilkSatıcıÜrünü.isDisplayed());
-        Assert.assertTrue(hepsiBuradaPage.ikinciSatıcıÜrünü.isDisplayed());
+        hepsiBuradaPage.girişİşlemiYapmaVeDoğrulama();
+        log.info("Kullanıcı sorunsuz bir şekilde giriş işlemi yapar ve giriş işleminin yapıldığı doğrulanır");
 
 
-        //
+        hepsiBuradaPage.ürünArama();
+        log.info("Kullanıcı satın almak istediği ürün için arama yapar");
+
+
+        hepsiBuradaPage.kullanıcıİlkÜrünSecme();
+        log.info("Kullanıcı,arama sonucunda ekrana gelen ürün listesinden ürün seçer");
+
+        hepsiBuradaPage.ikinciSekmeyeGeçiş();
+        hepsiBuradaPage.farklıSatıcılardanÜrünSeçVeSepeteEkle();
+        log.info("Kullanıcı seçtiği ürün için 2 tane farklı satıcıdan ürünü sepete ekler");
+
+
+        hepsiBuradaPage.seçilenÜrünüSepetimdeDoğrulama();
+        log.info("Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanır");
+
+        Driver.quitDriver();
+
+    }
+
+    @Test
+    public void üyeGirişiYapmadanAlişveriş(){
+
+        hepsiBuradaPage=new HepsiBuradaPage();
+
+        Log.startTestCase("Kullanıcının üye girişi yapmadan sepetine eklediği ürünleri doğrulama testi");
+        hepsiBuradaPage.istenilenWebSiteyeGitme();
+        Log.info("Kullanıcı"+ConfigReader.getProperty("url")+ "sitesini ziyaret eder");
+
+
+        hepsiBuradaPage.ürünArama();
+        Log.info("Kullanıcı satın almak istediği ürün için arama yapar");
+
+
+        hepsiBuradaPage.kullanıcıİlkÜrünSecme();
+        Log.info("Kullanıcı,arama sonucunda ekrana gelen ürün listesinden ürün seçer");
+
+
+        hepsiBuradaPage.ikinciSekmeyeGeçiş();
+        hepsiBuradaPage.farklıSatıcılardanÜrünSeçVeSepeteEkle();
+        Log.info("Kullanıcı seçtiği ürün için 2 tane farklı satıcıdan ürünü sepete ekler");
+
+
+        hepsiBuradaPage.seçilenÜrünüSepetimdeDoğrulama();
+        Log.info("Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanır");
+
+        Driver.quitDriver();
+
+    }
 
 
 
@@ -71,5 +81,13 @@ public class HepsiBuradaTest {
 
 
 
-     }
+
+
+
+
+
+
+
+
+
 }

@@ -13,21 +13,19 @@ import java.util.Date;
 
 
 public abstract class TestBaseRapor {
-    protected static ExtentReports extentReports; //extent report'a ilk atamayi yapar
-    protected static ExtentTest extentTest; // test pass veya failed gibi bilgileri kaydeder. Ayrica ekran resmi icin de kullaniriz
-    protected static ExtentHtmlReporter extentHtmlReporter; // Html raporu duzenler
+    protected static ExtentReports extentReports;
+    protected static ExtentTest extentTest;
+    protected static ExtentHtmlReporter extentHtmlReporter;
     // Test işlemine başlamadan hemen önce (test methodundan önce değil, tüm test işleminden önce)
-    @BeforeTest(alwaysRun = true) // alwaysRun : her zaman çalıştır.
+    @BeforeTest(alwaysRun = true)
     public void setUpTest() {
-        extentReports = new ExtentReports(); // Raporlamayi baslatir
-        //rapor oluştuktan sonra raporunuz nereye eklensin istiyorsanız buraya yazıyorsunuz.
+        extentReports = new ExtentReports();
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        String filePath = System.getProperty("user.dir") + "/target/Rapor/rapor"+date+".html";
-        //oluşturmak istediğimiz raporu (html formatında) başlatıyoruz, filePath ile dosya yolunu belirliyoruz.
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/Rapor/rapor"+date+".html";
         extentHtmlReporter = new ExtentHtmlReporter(filePath);
         extentReports.attachReporter(extentHtmlReporter);
 
-        // İstediğiniz bilgileri buraya ekeyebiliyorsunuz.
+
         extentReports.setSystemInfo("Enviroment","Test");
         extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser")); // chrome, firefox
         extentReports.setSystemInfo("Automation Engineer", "Yasemin");
@@ -35,7 +33,7 @@ public abstract class TestBaseRapor {
         extentHtmlReporter.config().setReportName("TestNG Reports");
     }
 
-    // Her test methodundan sonra eğer testte hata varsa, ekran görüntüsü alıp rapora ekliyor
+    // Her test methodundan sonra eğer testte hata varsa, ekran görüntüsü alıp rapora eklerim
     @AfterMethod(alwaysRun = true)
     public void tearDownMethod(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) { // eğer testin sonucu başarısızsa
